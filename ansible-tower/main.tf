@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.region
+  region  = var.region
   profile = "default"
 }
 
@@ -20,7 +20,7 @@ data "aws_ami" "ansible_tower_image" {
 
 ## SG ##
 module "security_group" {
-  source  = "../modules/sg_security_group"
+  source = "../modules/sg_security_group"
 
   name        = var.name
   description = "Security group for usage with EC2 instance"
@@ -33,6 +33,7 @@ module "security_group" {
       to_port     = 22
       protocol    = "tcp"
       description = "SSH access"
+      # Lab/demo CIDR: restrict this to trusted networks before production use.
       cidr_blocks = "0.0.0.0/0"
     },
     {
@@ -51,6 +52,7 @@ module "security_group" {
       to_port     = 65535
       protocol    = "all"
       description = "All traffic out"
+      # Lab/demo CIDR: restrict this to trusted networks before production use.
       cidr_blocks = "0.0.0.0/0"
     }
   ]
