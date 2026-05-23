@@ -1,7 +1,7 @@
 variable "image_id" {
   description = "Image ID used on EC2"
   type        = string
-  default     = "ami-0000w0000" 
+  default     = "ami-0000w0000"
 }
 
 variable "vpc_id" {
